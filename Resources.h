@@ -51,6 +51,7 @@ class Resources
         static void load();
         static SDL_Texture* getTexture(RESOURCES_VALUE value);
         static SDL_Rect getSprite(RESOURCES_VALUE value);
+        static void free();
 
     private:
         //static void loadFile(std::string path);

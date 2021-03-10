@@ -90,4 +90,16 @@ SDL_Rect Resources::getSprite(RESOURCES_VALUE value)
     return tmpRect;
 }
 
+void Resources::free()
+{
+    console.writeLine("Free memory. . .");
 
+    SDL_DestroyTexture(tile_map);
+    SDL_DestroyTexture(snake);
+    SDL_DestroyTexture(fruit);
+    tile_map = NULL;
+    snake = NULL;
+    fruit = NULL;
+
+    renderer = NULL;
+}
