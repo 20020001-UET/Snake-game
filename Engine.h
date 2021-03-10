@@ -18,15 +18,17 @@ class Engine
     public:
         Engine();
         ~Engine();
-        static void init(int width, int height, std::string title);
+        static void init(int _width, int _height, std::string title);
         static bool isRunning();
         static void handleEvents();
         static void render();
         static void close();
 
+        static SDL_Renderer* renderer;
+        static int width, height;
+
     private:
         static SDL_Window* window;
-        static SDL_Renderer* renderer;
         static bool running;
 
         static Console console;

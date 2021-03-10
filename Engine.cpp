@@ -1,11 +1,15 @@
 ///Engine [Source]
 #include "Engine.h"
 
+//Project headers
+#include "Resources.h"
+
 ///Engine class
 //static
 SDL_Window* Engine::window;
 SDL_Renderer* Engine::renderer;
 bool Engine::running;
+int Engine::width, Engine::height;
 
 Console Engine::console("Engine");
 
@@ -27,8 +31,11 @@ Engine::~Engine()
 }
 
 //initialize:
-void Engine::init(int width, int height, std::string title)
+void Engine::init(int _width, int _height, std::string title)
 {
+    width = _width;
+    height = _height;
+
     window = NULL;
     renderer = NULL;
 
@@ -86,8 +93,12 @@ void Engine::init(int width, int height, std::string title)
                 {
                     console.writeLine("Initialized SDL_image.");
 
+                    //Initialize Resouces
+                    Resources::init(renderer);
+                    Resources::load();
+
                     //Initialize Playing
-                    playing.init(renderer);
+                    playing.init(window, renderer);
                 }
             }
         }
@@ -150,6 +161,9 @@ void Engine::render()
 //Close
 void Engine::close()
 {
+    //Destroy Playing State
+    playing.destroy();
+
     console.writeLine("Closing Engine. . .");
 
     //Destroy window & renderer
