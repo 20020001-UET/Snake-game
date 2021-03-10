@@ -17,22 +17,30 @@
 class Snake
 {
     public:
-        Snake(std::string path, SDL_Renderer* _renderer, int x, int y, int w, int h);
+        Snake(int x, int y, int w, int h);
         ~Snake();
 
+        void update();
         void setDir(DIRECTION flag);
         void moving();
         void render();
+        void eatFruit();
+
+        int get_tile_x();
+        int get_tile_y();
 
     private:
         DIRECTION cur_dir;
 
+        bool eatenFruit;
+        int waitTime;
         int width, height;
-        int xpos, ypos;
+        int tail;
+        int tile_x[100], tile_y[100];
+        int screen_x[100], screen_y[100];
 
         SDL_Texture* texture;
         SDL_Rect srcRect, destRect;
-        SDL_Renderer* renderer;
 };
 
 #endif // SNAKE_H_
