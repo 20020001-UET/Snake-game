@@ -164,6 +164,9 @@ void Engine::close()
     //Destroy Playing State
     playing.destroy();
 
+    //Free Resources
+    Resources::free();
+
     console.writeLine("Closing Engine. . .");
 
     //Destroy window & renderer
