@@ -13,6 +13,8 @@
 //C++ library
 #include <string>
 
+const int MAX_TAIL = 20*15;
+
 ///Snake class
 class Snake
 {
@@ -36,8 +38,9 @@ class Snake
         int waitTime;
         int width, height;
         int tail;
-        int tile_x[100], tile_y[100];
-        int screen_x[100], screen_y[100];
+        int tile_x[MAX_TAIL], tile_y[MAX_TAIL];
+        int screen_x[MAX_TAIL], screen_y[MAX_TAIL];
+        DIRECTION dir_at[MAX_TAIL];
 
         SDL_Texture* texture;
         SDL_Rect srcRect, destRect;
