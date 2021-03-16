@@ -8,6 +8,7 @@
 SDL_Texture* Resources::tile_map;
 SDL_Rect Resources::map_sprite[TILE_MAP_COUNT];
 SDL_Texture* Resources::snake;
+SDL_Rect Resources::snake_sprite[SNAKE_COUNT];
 SDL_Texture* Resources::fruit;
 
 SDL_Renderer* Resources::renderer;
@@ -31,7 +32,36 @@ void Resources::load()
     map_sprite[DIRT] = {PIXEL, 0, PIXEL, PIXEL};
 
     //snake
-    snake = TextureManager::load("Assets/snake.png");
+    snake = TextureManager::load("Assets/snakes.png");
+
+    //Head
+    snake_sprite[SNAKE_HEAD_UP] = {0, 0, PIXEL, PIXEL};
+    snake_sprite[SNAKE_HEAD_DOWN] = {0, PIXEL, PIXEL, PIXEL};
+    snake_sprite[SNAKE_HEAD_LEFT] = {0, PIXEL*2, PIXEL, PIXEL};
+    snake_sprite[SNAKE_HEAD_RIGHT] = {0, PIXEL*3, PIXEL, PIXEL};
+
+    //Body
+    snake_sprite[SNAKE_BODY_UP] = {PIXEL, 0, PIXEL, PIXEL};
+    snake_sprite[SNAKE_BODY_DOWN] = {PIXEL, PIXEL, PIXEL, PIXEL};
+    snake_sprite[SNAKE_BODY_LEFT] = {PIXEL, PIXEL*2, PIXEL, PIXEL};
+    snake_sprite[SNAKE_BODY_RIGHT] = {PIXEL, PIXEL*3, PIXEL, PIXEL};
+
+    //Corner
+    snake_sprite[SNAKE_CORNER_RIGHT_UP] = {PIXEL*2, 0, PIXEL, PIXEL};
+    snake_sprite[SNAKE_CORNER_LEFT_UP] = {PIXEL*2, PIXEL, PIXEL, PIXEL};
+    snake_sprite[SNAKE_CORNER_UP_LEFT] = {PIXEL*2, PIXEL*2, PIXEL, PIXEL};
+    snake_sprite[SNAKE_CORNER_DOWN_LEFT] = {PIXEL*2, PIXEL*3, PIXEL, PIXEL};
+
+    snake_sprite[SNAKE_CORNER_RIGHT_DOWN] = {PIXEL*3, 0, PIXEL, PIXEL};
+    snake_sprite[SNAKE_CORNER_LEFT_DOWN] = {PIXEL*3, PIXEL, PIXEL, PIXEL};
+    snake_sprite[SNAKE_CORNER_UP_RIGHT] = {PIXEL*3, PIXEL*2, PIXEL, PIXEL};
+    snake_sprite[SNAKE_CORNER_DOWN_RIGHT] = {PIXEL*3, PIXEL*3, PIXEL, PIXEL};
+
+    //Tail
+    snake_sprite[SNAKE_TAIL_UP] = {PIXEL*4, 0, PIXEL, PIXEL};
+    snake_sprite[SNAKE_TAIL_DOWN] = {PIXEL*4, PIXEL, PIXEL, PIXEL};
+    snake_sprite[SNAKE_TAIL_LEFT] = {PIXEL*4, PIXEL*2, PIXEL, PIXEL};
+    snake_sprite[SNAKE_TAIL_RIGHT] = {PIXEL*4, PIXEL*3, PIXEL, PIXEL};
 
     //fruit
     fruit = TextureManager::load("Assets/fruit.png");
@@ -87,6 +117,13 @@ SDL_Rect Resources::getSprite(RESOURCES_VALUE value)
         case FRUIT_VAL:
             break;
     }
+    return tmpRect;
+}
+
+SDL_Rect Resources::getSprite(SNAKE_VALUE value)
+{
+    SDL_Rect tmpRect = {0, 0, 0, 0};
+    tmpRect = snake_sprite[value];
     return tmpRect;
 }
 
